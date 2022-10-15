@@ -1,10 +1,10 @@
 import React from "react";
-
+import InitialPage from "./components/InitialPage/InitialPage"
 
 function App() {
   return (
     <>
-      123
+      <InitialPage/>
     </>
   );
 }
