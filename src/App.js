@@ -1,5 +1,5 @@
 import React from "react";
-import InitialPage from "./components/InitialPage/InitialPage"
+import GamePage from "./components/GamePage/GamePage";
 
 function App() {
   return (
