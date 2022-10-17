@@ -4,7 +4,7 @@ import { UserContext } from "../../utils/useContext";
 function Button({text}) {
     const { startGame } = useContext(UserContext);
     return ( 
-        <button onClick={startGame}>
+        <button className="start-button" onClick={startGame}>
             {text}
         </button>
      );
