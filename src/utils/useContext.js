@@ -6,9 +6,10 @@ function AppContextProvider(props) {
   const [gameStarted, setGameStarted] = useState(false)
   const [gamePanel, setGamePanel] = useState(Array(9).fill(null))
   const [playerData, setPlayerData] = useState({
-        firstPlayer: "", 
-        secondPlayer: "", 
+    firstPlayer: "",
+    secondPlayer: "",
   });
+  const [isX, setIsX] = useState(true)
   function getWinnerCombination(squares) {
     const lines = [
       [0, 1, 2],
@@ -25,7 +26,7 @@ function AppContextProvider(props) {
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
           
           return squares[a];
-    }
+        }
       }
     return null;
   }
@@ -34,8 +35,8 @@ function AppContextProvider(props) {
   function handlePlayerData(event) {
     const { name, value } = event.target;
     setPlayerData((prevPlayerData) => {
-        return {
-            ...prevPlayerData,
+      return {
+        ...prevPlayerData,
         [name]: value,
       };
     });
@@ -46,7 +47,7 @@ function AppContextProvider(props) {
       setGamePanel(Array(9).fill(null))
       setIsX(true)
     }
-        }
+  }
 
   function handleChange(id) {
     const panelCopy = [...gamePanel];
@@ -56,15 +57,21 @@ function AppContextProvider(props) {
     panelCopy[id] = isX ? "✕" : "O"
     setGamePanel(panelCopy);
     setIsX(prevState => !prevState);
-}
+  }
 
   return (
     <UserContext.Provider
       value={{
         handlePlayerData,
+        playerData,
+        startGame,
         gameStarted,
+        isX,
         handleChange,
         gamePanel,
+        winner,
+        isX,
+        startGame
       }}
     >
       {props.children}
