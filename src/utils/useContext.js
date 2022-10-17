@@ -36,14 +36,22 @@ function AppContextProvider(props) {
             ...prevPlayerData,
             [name]: value
         }
-    })
+
+  function handleChange(id) {
+    const panelCopy = [...gamePanel];
+    // if game is won or if user clicks on a selected square
+    if (winner || panelCopy[id]) return;
+    // put an X or an O in the clicked square
+    panelCopy[id] = isX ? "✕" : "O"
+    setGamePanel(panelCopy);
+    setIsX(prevState => !prevState);
 }
 
   return (
     <UserContext.Provider
       value={{
         handlePlayerData,
-        playerData
+        handleChange,
       }}
     >
       {props.children}
