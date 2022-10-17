@@ -1,11 +1,10 @@
 import Button from "../Button/Button";
 import Input from "../Input/Input";
+import Squares from "../Squares/Squares";
 function GamePage(props) {
     return ( 
         <>
-            <Input text="First Player"/>
-            <Input text="Second Player"/>
-            <Button text="Start game"/>
+          <Squares />
         </>
      );
 }
