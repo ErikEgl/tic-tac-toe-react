@@ -3,6 +3,7 @@ import { useState, createContext } from "react";
 const UserContext = createContext();
 
 function AppContextProvider(props) {
+  const [gameStarted, setGameStarted] = useState(false)
   const [gamePanel, setGamePanel] = useState(Array(9).fill(null))
   const [playerData, setPlayerData] = useState({
         firstPlayer: "", 
@@ -61,6 +62,7 @@ function AppContextProvider(props) {
     <UserContext.Provider
       value={{
         handlePlayerData,
+        gameStarted,
         handleChange,
         gamePanel,
       }}
