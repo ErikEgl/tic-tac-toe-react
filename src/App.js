@@ -6,6 +6,7 @@ import { Link, Route, Routes } from "react-router-dom";
 function App() {
   return (
     <>
+    <div className="container">
       <nav>
         <ul>
           <li>
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/tic-tac-toe-react/game-board" element={<GamePage />} />
         <Route exact path="/tic-tac-toe-react/game-board" element={<Scoreboard />} />
       </Routes>
+    </div>
     </>
   );
 }
