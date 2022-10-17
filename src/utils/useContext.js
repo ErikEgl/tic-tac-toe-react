@@ -4,8 +4,10 @@ const UserContext = createContext();
 
 function AppContextProvider(props) {
   const [gamePanel, setGamePanel] = useState(Array(9).fill(null))
+  const [playerData, setPlayerData] = useState({
         firstPlayer: "", 
         secondPlayer: "", 
+  });
   function getWinnerCombination(squares) {
     const lines = [
       [0, 1, 2],
@@ -29,10 +31,14 @@ function AppContextProvider(props) {
   const winner = getWinnerCombination(gamePanel);
 
   function handlePlayerData(event) {
-    const {name, value} = event.target
-    setPlayerData(prevPlayerData => {
+    const { name, value } = event.target;
+    setPlayerData((prevPlayerData) => {
         return {
             ...prevPlayerData,
+        [name]: value,
+      };
+    });
+  }
   function startGame() {
     setGameStarted(prevState => !prevState)
     if(!gameStarted) {
