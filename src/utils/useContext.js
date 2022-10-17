@@ -33,7 +33,12 @@ function AppContextProvider(props) {
     setPlayerData(prevPlayerData => {
         return {
             ...prevPlayerData,
-            [name]: value
+  function startGame() {
+    setGameStarted(prevState => !prevState)
+    if(!gameStarted) {
+      setGamePanel(Array(9).fill(null))
+      setIsX(true)
+    }
         }
 
   function handleChange(id) {
