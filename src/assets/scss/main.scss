@@ -2,4 +2,24 @@
     max-width: 1400px;
     width: 80%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+nav {
+    ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        li {
+            a {
+                padding: 10px;
+                text-decoration: none;
+                color: darkblue;
+            }
+        }
+    }
 }
