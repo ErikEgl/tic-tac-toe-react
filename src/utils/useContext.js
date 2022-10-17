@@ -3,8 +3,7 @@ import { useState, createContext } from "react";
 const UserContext = createContext();
 
 function AppContextProvider(props) {
-  const [playerData, setPlayerData] = useState(
-    {
+  const [gamePanel, setGamePanel] = useState(Array(9).fill(null))
         firstPlayer: "", 
         secondPlayer: "", 
   function getWinnerCombination(squares) {
@@ -52,6 +51,7 @@ function AppContextProvider(props) {
       value={{
         handlePlayerData,
         handleChange,
+        gamePanel,
       }}
     >
       {props.children}
