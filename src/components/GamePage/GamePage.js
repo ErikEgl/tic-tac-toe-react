@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { UserContext } from "../../utils/useContext";
 
 function GamePage(props) {
-  const { gameStarted, setGamePanel, winner, isX, startGame } = useContext(UserContext);
+  const { gameStarted, winner, isX, startGame, playerData, tie } = useContext(UserContext);;
   return (
     <main>
       {!gameStarted ? (
@@ -22,8 +22,9 @@ function GamePage(props) {
         <>
           <Squares />
           <div>
-            <p>
-              {winner ? `Winner: ${winner}` : `Next Player: ${isX ? "✕" : "O"}`}
+            <p className={`${isX ? "✕" : "O"}`}>
+              {winner ? `Winner: ${winner}` :  tie ? "Tie!" : `Next Player: ${isX ? "✕" : "O"}`}
+             
             </p>
 
             <button className="start-button" onClick={() => startGame()}>

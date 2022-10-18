@@ -1,14 +1,22 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 
 const UserContext = createContext();
 
 function AppContextProvider(props) {
   const [gameStarted, setGameStarted] = useState(false)
   const [gamePanel, setGamePanel] = useState(Array(9).fill(null))
+  const [tie, setTie] = useState(false)
   const [playerData, setPlayerData] = useState({
     firstPlayer: "",
     secondPlayer: "",
   });
+
+  useEffect(() => {
+    if(!gamePanel.includes(null) && !winner){
+      setTie(true);
+    }
+  }, [gamePanel])
+
   const [isX, setIsX] = useState(true)
   function getWinnerCombination(squares) {
     const lines = [
@@ -24,7 +32,7 @@ function AppContextProvider(props) {
     for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-          
+
           return squares[a];
         }
       }
@@ -45,9 +53,15 @@ function AppContextProvider(props) {
     setGameStarted(prevState => !prevState)
     if(!gameStarted) {
       setGamePanel(Array(9).fill(null))
+      setTie(false);
       setIsX(true)
     }
   }
+
+
+  useEffect(() => {
+    setIsX(prevState => !prevState)
+  }, [winner, tie])
 
   function handleChange(id) {
     const panelCopy = [...gamePanel];
@@ -58,7 +72,6 @@ function AppContextProvider(props) {
     setGamePanel(panelCopy);
     setIsX(prevState => !prevState);
   }
-
   return (
     <UserContext.Provider
       value={{
@@ -70,8 +83,7 @@ function AppContextProvider(props) {
         handleChange,
         gamePanel,
         winner,
-        isX,
-        startGame
+        tie
       }}
     >
       {props.children}
