@@ -3,6 +3,11 @@ import GamePage from "./components/GamePage/GamePage";
 import Scoreboard from "./components/Scoreboard/Scoreboard";
 import { Link, Route, Routes } from "react-router-dom";
 
+let pathArray = window.location.pathname.split( '/' );
+const urlPartForGithubPages = "tic-tac-toe-react"
+
+let conditionalUrlPart = pathArray.includes(urlPartForGithubPages) ? urlPartForGithubPages : "";
+
 function App() {
   return (
     <>
@@ -10,16 +15,16 @@ function App() {
       <nav>
         <ul>
           <li>
-            <Link to="/tic-tac-toe-react/game-board">Game board</Link>
+            <Link to={`${conditionalUrlPart}/game-board`}>Game board</Link>
           </li>
           <li>
-            <Link to="/tic-tac-toe-react/scoreboard">Scoreboard</Link>
+            <Link to={`${conditionalUrlPart}/scoreboard`}>Scoreboard</Link>
           </li>
         </ul>
       </nav>
       <Routes>
-        <Route exact path="/tic-tac-toe-react/game-board" element={<GamePage />} />
-        <Route exact path="/tic-tac-toe-react/game-board" element={<Scoreboard />} />
+        <Route exact path={`${conditionalUrlPart}/game-board`} element={<GamePage />} />
+        <Route exact path={`${conditionalUrlPart}/scoreboard`} element={<Scoreboard />} />
       </Routes>
     </div>
     </>
