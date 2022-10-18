@@ -26,7 +26,13 @@ function GamePage(props) {
               {winner ? `Winner: ${winner}` :  tie ? "Tie!" : `Next Player: ${isX ? "✕" : "O"}`}
              
             </p>
-
+            <span>
+                 {playerData.firstPlayer ? playerData.firstPlayer : "Player 1"}
+              </span>
+              <span> - vs - </span>
+              <span>
+                {playerData.secondPlayer ? playerData.secondPlayer : "Player 2"}
+              </span>
             <button className="start-button" onClick={() => startGame()}>
               Start Game
             </button>
