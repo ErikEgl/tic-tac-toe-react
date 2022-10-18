@@ -1,3 +1,4 @@
+$square-size: 80px;
 .squares {
   display: grid;
   place-items: center;
@@ -5,14 +6,15 @@
   grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  width: 150px;
-  height: 150px;
+  width: calc($square-size * 3);
+  height: calc($square-size * 3);
   .square {
-    height: 50px;
-    width: 50px;
+    height: $square-size;
+    width: $square-size;
     border: 0;
     background-color: $main-bg-color;
-    font-size: 25px;
+    font-size: 30px;
+    font-weight: 700;
     &:nth-child(1) {
       grid-area: 1 / 1 / 2 / 2;
     }
@@ -59,11 +61,12 @@
     &:nth-child(9) {
       grid-area: 3 / 3 / 4 / 4;
     }
-    &.✕ {
-      color: #910b08;
-    }
-    &.O {
-      color: darkblue;
-    }
+
   }
+}
+.✕ {
+  color: #910b08;
+}
+.O {
+  color: darkblue;
 }
