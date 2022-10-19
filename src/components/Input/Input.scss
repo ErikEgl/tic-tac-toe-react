@@ -2,6 +2,10 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
+    flex-direction: column;
+    @include media($md){
+        flex-direction: row;
+    };
 }
 
 label {

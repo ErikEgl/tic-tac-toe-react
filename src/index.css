@@ -30,17 +30,32 @@ nav ul {
   display: flex;
   gap: 1rem;
   justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+@media screen and (min-width: 992px) {
+  nav ul {
+    flex-direction: row;
+  }
 }
 nav ul li a {
   padding: 10px;
   text-decoration: none;
   color: darkblue;
+  border: 1px solid currentColor;
+  border-radius: 5px;
 }
 
 .input-container {
   display: flex;
   justify-content: center;
   gap: 1rem;
+  flex-direction: column;
+}
+@media screen and (min-width: 992px) {
+  .input-container {
+    flex-direction: row;
+  }
 }
 
 label {
@@ -150,6 +165,10 @@ ul.time-travel {
 ul.time-travel li button {
   display: block;
   width: 100%;
+}
+ul.time-travel li button[disabled] {
+  background-color: lightgray;
+  color: black;
 }
 
 /*# sourceMappingURL=index.css.map */

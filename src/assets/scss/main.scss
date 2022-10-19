@@ -14,11 +14,18 @@ nav {
         display: flex;
         gap: 1rem;
         justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        @include media($md){
+            flex-direction: row;
+        };
         li {
             a {
                 padding: 10px;
                 text-decoration: none;
                 color: darkblue;
+                border: 1px solid currentColor;
+                border-radius: 5px;
             }
         }
     }
