@@ -109,8 +109,10 @@ function AppContextProvider(props) {
   useEffect(() => {
     setIsX(prevState => !prevState)
     if(winner || tie ) {
-      updateScoreboard()
       setIsX(true)
+    }
+    if(winner) {
+      updateScoreboard()
     }
   }, [winner, tie])
 
