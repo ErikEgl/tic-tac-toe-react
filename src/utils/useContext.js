@@ -107,13 +107,19 @@ function AppContextProvider(props) {
     if(step === 9) return setTie(true);
     setTie(false);
 };
-
   useEffect(() => {
     setIsX(prevState => !prevState)
-    if(winner || tie) {
+    if(winner || tie ) {
       updateScoreboard()
+      setIsX(true)
     }
   }, [winner, tie])
+
+  useEffect(() => {
+    if(!gameStarted) {
+      setTie(false)
+    }
+  }, [gameStarted])
 
   function handleChange(id) {
     const timeInHistory = gameHistory.slice(0, step + 1);
