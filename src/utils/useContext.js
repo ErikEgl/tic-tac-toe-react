@@ -68,12 +68,11 @@ function AppContextProvider(props) {
         }
       });
     } 
-    if(!gameStarted) {
+    setFirstPlayer()
       setGameHistory([Array(9).fill(null)])
       setStep(0)
       setTie(false);
       setIsX(true)
-    }
   }
 
   function updateScoreboard() {
