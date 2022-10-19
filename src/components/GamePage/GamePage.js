@@ -22,19 +22,23 @@ function GamePage(props) {
       ) : (
         <>
           <Squares />
-          <div>
-            <p className={`${isX ? "✕" : "O"}`}>
-              {winner ? `Winner: ${winner}` :  tie ? "Tie!" : `Next Player: ${isX ? "✕" : "O"}`}
-             
-            </p>
-            <span>
-                 {playerData.firstPlayer ? playerData.firstPlayer : "Player 1"}
-              </span>
-              <span> - vs - </span>
-              <span>
-                {playerData.secondPlayer ? playerData.secondPlayer : "Player 2"}
-              </span>
+          <div className="game-footer">
+            <div className="game-controls">
+              <div className="game-info">
+                <p className={`${isX ? "✕" : "O"}`}>
+                  {winner ? `Winner: ${winner}` :  tie ? "Tie!" : `Next Player: ${isX ? "✕" : "O"}`}
+                
+                </p>
+                <span>
+                    {playerData.firstPlayer ? playerData.firstPlayer : "Player 1"}
+                </span>
+                <span> - vs - </span>
+                <span>
+                  {playerData.secondPlayer ? playerData.secondPlayer : "Player 2"}
+                </span>
+              </div>
               <TimeTravel />
+            </div>
             <button className="start-button" onClick={() => startGame()}>
               Start Game
             </button>
