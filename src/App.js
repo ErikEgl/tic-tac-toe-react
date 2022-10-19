@@ -1,16 +1,19 @@
-import React from "react";
+import { useContext } from "react";
+import { UserContext } from "./utils/useContext";
 import GamePage from "./components/GamePage/GamePage";
 import Scoreboard from "./components/Scoreboard/Scoreboard";
 import { Link, Route, Routes } from "react-router-dom";
-
+import Confetti from 'react-confetti'
 let pathArray = window.location.pathname.split( '/' );
 const urlPartForGithubPages = "tic-tac-toe-react"
 
 let conditionalUrlPart = pathArray.includes(urlPartForGithubPages) ? urlPartForGithubPages : "";
 
 function App() {
+  const { winner } = useContext(UserContext);
   return (
     <>
+    {winner &&  <Confetti/>}
     <div className="container">
       <nav>
         <ul>
