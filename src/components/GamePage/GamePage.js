@@ -4,9 +4,8 @@ import Squares from "../Squares/Squares";
 import { useContext } from "react";
 import { UserContext } from "../../utils/useContext";
 import TimeTravel from "../TimeTravel/TimeTravel";
-
 function GamePage(props) {
-  const { gameStarted, winner, isX, startGame, playerData, tie } = useContext(UserContext);;
+  const { gameStarted, winner, isX, startGame, playerData, tie } = useContext(UserContext);
   return (
     <main>
       {!gameStarted ? (
@@ -26,15 +25,15 @@ function GamePage(props) {
             <div className="game-controls">
               <div className="game-info">
                 <p className={`${isX ? "✕" : "O"}`}>
-                  {winner ? `Winner: ${winner}` :  tie ? "Tie!" : `Next Player: ${isX ? "✕" : "O"}`}
+                  {winner ? `Winner: ${winner}` :  tie ? "Tie!" : `Next move ${isX ? playerData.firstPlayer : playerData.secondPlayer}: ${isX ? "✕" : "O"}`}
                 
                 </p>
                 <span>
-                    {playerData.firstPlayer ? playerData.firstPlayer : "Player 1"}
+                    {playerData.firstPlayer}
                 </span>
                 <span> - vs - </span>
                 <span>
-                  {playerData.secondPlayer ? playerData.secondPlayer : "Player 2"}
+                  {playerData.secondPlayer}
                 </span>
               </div>
               <TimeTravel />

@@ -5,6 +5,7 @@ const UserContext = createContext();
 function AppContextProvider(props) {
   const [gameStarted, setGameStarted] = useState(false)
   const [gameHistory, setGameHistory] = useState([Array(9).fill(null)])
+  const [winnersArray,setWinnersArray] = useState([])
   const [step, setStep] = useState(0)
   const [tie, setTie] = useState(false)
   const [playerData, setPlayerData] = useState({
@@ -33,7 +34,6 @@ function AppContextProvider(props) {
     for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-
           return squares[a];
         }
       }
@@ -52,6 +52,22 @@ function AppContextProvider(props) {
   }
   function startGame() {
     setGameStarted(prevState => !prevState)
+    if(!playerData.firstPlayer) {
+      setPlayerData(prevPlayerData => {
+        return {
+          ...prevPlayerData,
+          firstPlayer: "Player 1"
+        }
+      });
+    } 
+    if(!playerData.secondPlayer) {
+      setPlayerData(prevPlayerData => {
+        return {
+          ...prevPlayerData,
+          secondPlayer: "Player 2"
+        }
+      });
+    } 
     if(!gameStarted) {
       setGameHistory([Array(9).fill(null)])
       setStep(0)
@@ -60,6 +76,13 @@ function AppContextProvider(props) {
     }
   }
 
+  function updateScoreboard() {
+    setWinnersArray(prevArray => {
+      return (
+        [...prevArray, winner === "✕" ? playerData.firstPlayer : playerData.secondPlayer]
+      )
+    })
+  }
   function jumpInTime(step) {
     setStep(step);
     setIsX(step % 2 === 0)
@@ -69,6 +92,9 @@ function AppContextProvider(props) {
 
   useEffect(() => {
     setIsX(prevState => !prevState)
+    if(winner || tie) {
+      updateScoreboard()
+    }
   }, [winner, tie])
 
   function handleChange(id) {
@@ -96,7 +122,8 @@ function AppContextProvider(props) {
         winner,
         tie, 
         step,
-        jumpInTime
+        jumpInTime,
+        winnersArray
       }}
     >
       {props.children}
