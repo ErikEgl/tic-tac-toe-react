@@ -15,7 +15,7 @@ function App() {
       <nav>
         <ul>
           <li>
-            <Link to={`${conditionalUrlPart}/game-board`}>Game board</Link>
+            <Link to={`${conditionalUrlPart}`}>Game board</Link>
           </li>
           <li>
             <Link to={`${conditionalUrlPart}/scoreboard`}>Scoreboard</Link>
@@ -23,7 +23,7 @@ function App() {
         </ul>
       </nav>
       <Routes>
-        <Route exact path={`${conditionalUrlPart}/game-board`} element={<GamePage />} />
+        <Route exact path={`${conditionalUrlPart}`} element={<GamePage />} />
         <Route exact path={`${conditionalUrlPart}/scoreboard`} element={<Scoreboard />} />
       </Routes>
     </div>
