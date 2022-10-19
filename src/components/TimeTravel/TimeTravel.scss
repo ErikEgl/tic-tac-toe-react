@@ -8,7 +8,11 @@ ul.time-travel {
         button {
             display: block;
             width: 100%;
-            @extend .start-button
+            @extend .start-button;
+            &[disabled] {
+                background-color: lightgray;
+                color: black;
+            }
         }
     }
 }
