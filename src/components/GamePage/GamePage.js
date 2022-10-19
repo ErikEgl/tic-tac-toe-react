@@ -6,6 +6,16 @@ import { UserContext } from "../../utils/useContext";
 import TimeTravel from "../TimeTravel/TimeTravel";
 function GamePage(props) {
   const { gameStarted, winner, isX, startGame, playerData, tie } = useContext(UserContext);
+
+  function getGameComment() {
+    if(winner) {
+      return (`Winner is ${winner === "✕" ? playerData.firstPlayer : playerData.secondPlayer}: ${winner}`)
+    } else if (tie) {
+      return ("Tie!")
+    } else {
+      return (`Next move ${isX ? playerData.firstPlayer : playerData.secondPlayer}: ${isX ? "✕" : "O"}`)
+    } 
+  }
   return (
     <main>
       {!gameStarted ? (
@@ -24,9 +34,8 @@ function GamePage(props) {
           <div className="game-footer">
             <div className="game-controls">
               <div className="game-info">
-                <p className={`${isX ? "✕" : "O"}`}>
-                  {winner ? `Winner: ${winner}` :  tie ? "Tie!" : `Next move ${isX ? playerData.firstPlayer : playerData.secondPlayer}: ${isX ? "✕" : "O"}`}
-                
+                <p className={`${!!winner ? winner : (isX ? "✕ isX" : "O isX")}`}>
+                  {getGameComment()}
                 </p>
                 <span>
                     {playerData.firstPlayer}
