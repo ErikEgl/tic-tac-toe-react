@@ -54,6 +54,7 @@ function AppContextProvider(props) {
     setGameStarted(prevState => !prevState)
     if(!gameStarted) {
       setGameHistory([Array(9).fill(null)])
+      setStep(0)
       setTie(false);
       setIsX(true)
     }
