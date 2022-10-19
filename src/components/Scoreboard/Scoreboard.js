@@ -6,7 +6,7 @@ function Scoreboard() {
     const { winnersArray } = useContext(UserContext);
     return ( 
         <div>
-            Scoreboard
+            Scoreboard {!winnersArray.length && "is empty"}
             <ol>
                 {winnersArray.map((winner, i) => <li key={i}>Winner was {winner} </li> )}
             </ol>
