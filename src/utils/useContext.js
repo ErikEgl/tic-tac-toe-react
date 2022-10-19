@@ -4,7 +4,8 @@ const UserContext = createContext();
 
 function AppContextProvider(props) {
   const [gameStarted, setGameStarted] = useState(false)
-  const [gamePanel, setGamePanel] = useState(Array(9).fill(null))
+  const [gameHistory, setGameHistory] = useState([Array(9).fill(null)])
+  const [step, setStep] = useState(0)
   const [tie, setTie] = useState(false)
   const [playerData, setPlayerData] = useState({
     firstPlayer: "",
@@ -12,10 +13,10 @@ function AppContextProvider(props) {
   });
 
   useEffect(() => {
-    if(!gamePanel.includes(null) && !winner){
+    if(!gameHistory[step].includes(null) && !winner){
       setTie(true);
     }
-  }, [gamePanel])
+  }, [gameHistory])
 
   const [isX, setIsX] = useState(true)
   function getWinnerCombination(squares) {
@@ -38,7 +39,7 @@ function AppContextProvider(props) {
       }
     return null;
   }
-  const winner = getWinnerCombination(gamePanel);
+  const winner = getWinnerCombination(gameHistory[step]);
 
   function handlePlayerData(event) {
     const { name, value } = event.target;
@@ -52,24 +53,33 @@ function AppContextProvider(props) {
   function startGame() {
     setGameStarted(prevState => !prevState)
     if(!gameStarted) {
-      setGamePanel(Array(9).fill(null))
+      setGameHistory([Array(9).fill(null)])
       setTie(false);
       setIsX(true)
     }
   }
 
+  function jumpInTime(step) {
+    setStep(step);
+    setIsX(step % 2 === 0)
+    if(step === 9) return setTie(true);
+    setTie(false);
+};
 
   useEffect(() => {
     setIsX(prevState => !prevState)
   }, [winner, tie])
 
   function handleChange(id) {
-    const panelCopy = [...gamePanel];
+    const timeInHistory = gameHistory.slice(0, step + 1);
+    const current = timeInHistory[step];
+    const cells = [...current];
     // if game is won or if user clicks on a selected square
-    if (winner || panelCopy[id]) return;
+    if (winner || cells[id]) return;
     // put an X or an O in the clicked square
-    panelCopy[id] = isX ? "✕" : "O"
-    setGamePanel(panelCopy);
+    cells[id] = isX ? "✕" : "O"
+    setGameHistory([...timeInHistory, cells])
+    setStep(timeInHistory.length);
     setIsX(prevState => !prevState);
   }
   return (
@@ -81,9 +91,11 @@ function AppContextProvider(props) {
         gameStarted,
         isX,
         handleChange,
-        gamePanel,
+        gameHistory,
         winner,
-        tie
+        tie, 
+        step,
+        jumpInTime
       }}
     >
       {props.children}

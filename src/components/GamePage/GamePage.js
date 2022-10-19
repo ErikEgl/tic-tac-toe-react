@@ -3,6 +3,7 @@ import Input from "../Input/Input";
 import Squares from "../Squares/Squares";
 import { useContext } from "react";
 import { UserContext } from "../../utils/useContext";
+import TimeTravel from "../TimeTravel/TimeTravel";
 
 function GamePage(props) {
   const { gameStarted, winner, isX, startGame, playerData, tie } = useContext(UserContext);;
@@ -33,6 +34,7 @@ function GamePage(props) {
               <span>
                 {playerData.secondPlayer ? playerData.secondPlayer : "Player 2"}
               </span>
+              <TimeTravel />
             <button className="start-button" onClick={() => startGame()}>
               Start Game
             </button>
