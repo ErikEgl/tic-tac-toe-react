@@ -37,12 +37,12 @@ function GamePage(props) {
                 <p className={`${!!winner ? winner : (isX ? "✕ isX" : "O isX")}`}>
                   {getGameComment()}
                 </p>
-                <span>
-                    {playerData.firstPlayer}
+                <span className="✕">
+                    {playerData.firstPlayer} -
                 </span>
-                <span> - vs - </span>
-                <span>
-                  {playerData.secondPlayer}
+                <span> vs </span>
+                <span className="O">
+                - {playerData.secondPlayer}
                 </span>
               </div>
               <TimeTravel />
