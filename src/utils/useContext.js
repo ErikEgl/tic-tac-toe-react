@@ -83,6 +83,24 @@ function AppContextProvider(props) {
       )
     })
   }
+
+
+
+  function setFirstPlayer() {
+    let [prevGameWinner] = winnersArray.slice(-1)
+    if(prevGameWinner) {
+      if(playerData.firstPlayer || playerData.secondPlayer === prevGameWinner) {
+        if(playerData.secondPlayer === prevGameWinner) {
+          setPlayerData(prevPlayerData => {
+            return {
+              secondPlayer: prevPlayerData.firstPlayer,
+              firstPlayer: prevGameWinner,
+            }
+          });
+        }
+      } 
+    }
+  }
   function jumpInTime(step) {
     setStep(step);
     setIsX(step % 2 === 0)
