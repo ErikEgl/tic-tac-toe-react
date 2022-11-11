@@ -2,10 +2,11 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background-color: $main-bg-color;
-  color: darkblue;
+  background-color: var(--mainBgColor);
+  color: var( --primaryAccentColor);
   font-weight: 700;
   font-size: 25px;
+  height: 100vh;
 }
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 

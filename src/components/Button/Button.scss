@@ -2,7 +2,7 @@ button.start-button {
     display: block;
     margin-inline: auto;
     cursor: pointer;
-    background-color: darkblue;
+    background-color: var( --primaryAccentColor);
     color: white;
     border-radius: 5px;
     padding: 10px;

@@ -20,12 +20,17 @@ nav {
             flex-direction: row;
         };
         li {
-            a {
+            a, button {
                 padding: 10px;
                 text-decoration: none;
-                color: darkblue;
+                color: var( --primaryAccentColor);
                 border: 1px solid currentColor;
                 border-radius: 5px;
+                background-color: transparent;
+                font-size: inherit;
+                display: inline-block;
+                font-weight: inherit;
+                cursor: pointer;
             }
         }
     }
