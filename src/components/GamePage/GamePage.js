@@ -32,6 +32,9 @@ function GamePage(props) {
         <>
           <Squares />
           <div className="game-footer">
+          <button className="start-button" onClick={() => startGame()}>
+              Start new game
+            </button>
             <div className="game-controls">
               <div className="game-info">
                 <p className={`${!!winner ? winner : (isX ? "✕ isX" : "O isX")}`}>
@@ -46,10 +49,7 @@ function GamePage(props) {
                 </span>
               </div>
               <TimeTravel />
-            </div>
-            <button className="start-button" onClick={() => startGame()}>
-              Start Game
-            </button>
+            </div>  
           </div>
         </>
       )}
