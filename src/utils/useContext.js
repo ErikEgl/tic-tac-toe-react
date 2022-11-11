@@ -6,6 +6,7 @@ function AppContextProvider(props) {
   const [gameStarted, setGameStarted] = useState(false)
   const [gameHistory, setGameHistory] = useState([Array(9).fill(null)])
   const [winnersArray,setWinnersArray] = useState([])
+  const [isDarkMode, setIsDarkMode] = useState(false)
   const [step, setStep] = useState(0)
   const [tie, setTie] = useState(false)
   const [playerData, setPlayerData] = useState({
@@ -13,11 +14,25 @@ function AppContextProvider(props) {
     secondPlayer: "",
   });
 
+
+  function useDarkMode() {
+    setIsDarkMode(prevState => !prevState)
+  }
+  
+  useEffect(() => {
+    const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if(defaultDark) {
+      setIsDarkMode(true)
+    } 
+  }, []);
+
+
   useEffect(() => {
     if(!gameHistory[step].includes(null) && !winner){
       setTie(true);
     }
   }, [gameHistory])
+  
 
   const [isX, setIsX] = useState(true)
   function getWinnerCombination(squares) {
@@ -122,6 +137,18 @@ function AppContextProvider(props) {
     }
   }, [gameStarted])
 
+  function changeMode() {
+    setIsDarkMode((prevMode) => !prevMode);
+  }
+
+  if (isDarkMode) {
+    document.querySelector("html").classList.add("dark");
+    document.querySelector("html").classList.remove("light");
+  } else {
+    document.querySelector("html").classList.add("light");
+    document.querySelector("html").classList.remove("dark");
+  }
+
   function handleChange(id) {
     const timeInHistory = gameHistory.slice(0, step + 1);
     const current = timeInHistory[step];
@@ -148,7 +175,10 @@ function AppContextProvider(props) {
         tie, 
         step,
         jumpInTime,
-        winnersArray
+        winnersArray,
+        useDarkMode,
+        isDarkMode,
+        changeMode
       }}
     >
       {props.children}
