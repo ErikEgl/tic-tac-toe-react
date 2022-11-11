@@ -9,7 +9,7 @@ function Input({text}) {
         <>
             <label>
                 {text}
-                <input onChange={handlePlayerData} type="text" name={text === "First Player" ? "firstPlayer" : "secondPlayer"} value={text === "First Player" ? playerData.firstPlayer : playerData.secondPlayer}/>
+                <input onChange={handlePlayerData} type="text" placeholder="Player name" name={text === "First Player" ? "firstPlayer" : "secondPlayer"} value={text === "First Player" ? playerData.firstPlayer : playerData.secondPlayer}/>
             </label>
         </>
      );
