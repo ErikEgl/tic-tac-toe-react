@@ -87,6 +87,13 @@ label {
 }
 label input {
   padding: 0.5rem;
+  background-color: transparent;
+  color: var(--primaryAccentColor);
+  border: 1px solid currentColor;
+  border-radius: 5px;
+}
+label input::placeholder {
+  color: var(--primaryAccentColor);
 }
 
 main {

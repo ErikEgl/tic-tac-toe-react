@@ -16,5 +16,12 @@ label {
     gap: 0.3rem;
     input {
         padding: 0.5rem;
+        background-color: transparent;
+        color: var(--primaryAccentColor);
+        border: 1px solid currentColor;
+        border-radius: 5px;
+        &::placeholder {
+            color: var(--primaryAccentColor);
+        }
     }
 }
